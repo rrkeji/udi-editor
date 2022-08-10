@@ -1,0 +1,88 @@
+syntax = "proto3";
+
+package idns.networks;
+
+message DeviceEntity{
+    // device ID
+    string device_id = 1;
+
+    string name = 2;
+
+}
+
+message NetworkMember{
+    // device ID
+    string device_id = 1;
+    //
+    string name = 2;
+    //
+    bool is_shared = 3;
+
+}
+
+message IpRange{
+    string start = 1;
+    string end = 2;
+}
+
+message Route{
+    string target = 1;
+    string via = 2;
+}
+message Rule{
+    int32 ether_type = 1;
+    bool not = 2;
+    bool or = 3;
+    string rule_type = 4;
+}
+message NetworkDetail{
+    //16-digit network ID 
+    string network_id = 1;
+    repeated IpRange ip_assignment_pools = 2;
+    int32 multicast_limit = 3;
+    int32 mtu = 5;
+    bool private = 6;
+    repeated Route routes = 7;
+    repeated Rule rules = 8;
+    bool sso_enabled = 9;
+}
+//
+message CreateNetworkRequest{
+    string name = 1;
+}
+//
+message DeleteNetworkRequest{
+    string network_id = 1;
+}
+
+message NetworksResponse{
+    repeated string network_ids = 1;
+}
+
+//------device config 获取设备配置
+message GetDeviceConfigRequest{
+     // device ID
+    repeated string device_ids = 1;
+}
+
+message GetDeviceConfigResponse{
+}
+
+//------network status 获取个人的网络的状态
+message GetNetworkStatusRequest{
+    //16-digit network ID 
+    string network_id = 1;
+}
+
+//------network members 获取网络下的成员
+message GetNetworkMembersRequest{
+    //16-digit ZeroTier network ID 
+    string network_id = 1;
+}
+
+message GetNetworkMembersResponse{
+    //16-digit ZeroTier network ID 
+    string network_id = 1;
+    
+    repeated NetworkMember members = 2;
+}

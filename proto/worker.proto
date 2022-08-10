@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+package idns.worker;
+
+
+message WorkerConfig{
+
+    uint32 max_threads = 3;
+
+    uint32 min_threads = 5;
+}
+
+message WorkerStatus{
+    
+}
+
+message WorkerSetConfigRequest{
+    WorkerConfig config = 1;
+}

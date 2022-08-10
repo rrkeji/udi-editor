@@ -1,0 +1,57 @@
+syntax = "proto3";
+
+package idns.account;
+
+message Account{
+    string account_id = 1;
+    string public_key = 3;
+    string did = 4;
+    string biography = 5;
+    string name = 7;
+    string avatar = 8;
+}
+
+message GenerateAccountResponse{
+    string account_id = 4;
+    string secret_phrase = 1;
+    string secret_seed = 2;
+    string public_key = 3;
+}
+
+message GetAccountByIdRequest{
+    string account_id = 1;
+}
+
+message EncryptMessageRequest{
+    string plain = 1;
+    string password = 5;
+}
+
+message EncryptMessageResponse{
+    string salt = 1;
+    string nonce = 3;
+    string account_id = 4;
+    string cipher = 5;
+}
+
+message DecryptMessageRequest{
+    string salt = 1;
+    string nonce = 3;
+    string cipher = 5;
+    string password = 7;
+}
+
+message DecryptMessageResponse{
+    string plain = 1;
+}
+
+message LoginRequest{
+    string password = 2;
+    string phrase = 3;
+}
+
+message LoginResponse{
+    string public_key = 1;
+    string application_key = 2;
+    string token = 3;
+}

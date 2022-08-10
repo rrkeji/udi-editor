@@ -1,0 +1,42 @@
+syntax = "proto3";
+
+package idns.service;
+
+option java_package = "eth.idns.service";
+
+message RetrieveServiceByNameRequest{
+    string service_name = 1;
+}
+
+message RetrieveServiceByNameResponse{
+    string service_addr = 1;
+}
+
+
+message SaveServiceNsRequest{
+
+}
+
+message SaveServiceNsResponse{
+    
+}
+
+message SendPackagesRequest{
+    string service_addr = 1;
+    repeated bytes packages = 2;
+}
+
+message SendPackagesResponse{
+
+}
+
+message SendHttpPackageRequest{
+    string service_addr = 1;
+    string method = 2;
+    map<string,string> headers = 3;
+    repeated bytes body = 4;
+}
+
+message SendHttpPackageResponse{
+
+}

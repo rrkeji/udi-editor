@@ -1,0 +1,41 @@
+[package]
+name = "udi-editor"
+version = "0.1.0"
+description = "A Tauri App"
+authors = ["jinisu@163.com"]
+license = ""
+repository = ""
+default-run = "udi-editor"
+edition = "2021"
+rust-version = "1.57"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[build-dependencies]
+tauri-build = { version = "1.0.4", features = [] }
+
+[dependencies]
+serde_json = "1.0"
+serde = { version = "1.0", features = ["derive"] }
+prost = "0.11"
+prost-types = "0.11"
+bytes = "1.1.0"
+lazy_static = "1.4.0"
+futures = "0.3"
+anyhow = "1.0"
+tracing-subscriber = { version = "0.3", features = ["fmt"] }
+tracing = "0.1.15"
+
+tokio = { version = "1", features = ["full"] }
+
+tauri = { version = "1.0.5", features = ["api-all"] }
+idns-eth-api = { version = "*", path = "/Users/suhs/jinisu/idns.eth-api/api" }
+idns-eth-sdk = { version = "*", path = "/Users/suhs/jinisu/idns.eth-api/sdk" }
+
+[features]
+# by default Tauri runs in production mode
+# when `tauri dev` runs it is executed with `cargo run --no-default-features` if `devPath` is an URL
+default = ["custom-protocol"]
+# this feature is used used for production builds where `devPath` points to the filesystem
+# DO NOT remove this
+custom-protocol = ["tauri/custom-protocol"]

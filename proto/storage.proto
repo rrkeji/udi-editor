@@ -1,0 +1,37 @@
+syntax = "proto3";
+
+package idns.storage;
+
+message FileEntity{
+    uint64 id = 1;
+    uint64 parent_id = 2;
+    string file_name = 3;
+    string file_hash = 4;
+    uint64 file_size = 5;
+    string file_type = 6;
+    bool   is_dir = 7;
+    string category = 8;
+}
+
+message ListFilesRequest{
+    uint64 parent_id = 1;
+}
+
+message ListFilesResponse{
+    repeated FileEntity files = 1;
+}
+
+message ListFilesByCategoryRequest{
+    uint64 parent_id = 1;
+    string category = 2;
+    uint32 limit = 3;
+}
+
+message MkdirRequest{
+    uint64 parent_id = 1;
+    string file_name = 2;
+}
+
+message MkdirResponse{
+    bool result = 1;
+}
